@@ -3,6 +3,10 @@ import { Text, View } from "react-native";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 
 import HomeScreen from "../Screens/HomeScreen.js";
+import DeckScreen from "../Screens/DeckScreen.js";
+import InfoScreen from "../Screens/InfoScreen.js";
+import AddDeck from "../Components/AddDeck.js";
+import DeckView from "../Screens/DeckView.js";
 
 export default class Navigator extends React.Component {
   render() {
@@ -12,12 +16,17 @@ export default class Navigator extends React.Component {
 
 const AppStackNavigator = createStackNavigator(
   {
-    Home: HomeScreen
+    Home: HomeScreen,
+    Decks: DeckScreen,
+    Info: InfoScreen,
+    AddDeck: AddDeck,
+    DeckView: DeckView
   },
   {
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: "orange"
+        backgroundColor: "orange",
+        elevation: 0
       }
     }
   }
