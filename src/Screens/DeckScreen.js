@@ -1,18 +1,26 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import { getData } from "../Utils/Api.js";
+import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
+import { getData, getDecks } from "../Utils/Api.js";
+import { receiveDecks } from "../Actions/index.js";
+import { connect } from "react-redux";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from "react-native-responsive-screen";
 
-export default class DeckScreen extends React.Component {
+class DeckScreen extends React.Component {
   static navigationOptions = {
     title: "Decks"
   };
+
+  componentDidMount() {
+    getDecks().then(decks => this.props.receiveAllDecks(decks));
+  }
+
   render() {
     const { navigate } = this.props.navigation;
-    const decks = getData();
+    const { decks } = this.props;
+
     return (
       <View style={styles.container}>
         {Object.keys(decks).map(deck => {
@@ -24,19 +32,34 @@ export default class DeckScreen extends React.Component {
                 onPress={() => navigate("DeckView", { entryId: deck })}
               >
                 <Text style={styles.text}>{title}</Text>
-
                 <Text>{questions.length}</Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => navigate("AddDeck", {})}
-              />
             </View>
           );
         })}
       </View>
     );
   }
+}
+
+/*const mapStateToProps = decks => {
+  return decks;
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    receiveAllDecks: decks => dispatch(receiveDecks(decks))
+  };
+};*/
+
+function mapStateToProps(decks) {
+  return decks;
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    receiveAllDecks: decks => dispatch(receiveDecks(decks))
+  };
 }
 
 const styles = StyleSheet.create({
@@ -63,3 +86,8 @@ const styles = StyleSheet.create({
     color: "#333333"
   }
 });
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DeckScreen);

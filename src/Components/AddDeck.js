@@ -12,7 +12,7 @@ import {
   heightPercentageToDP as hp
 } from "react-native-responsive-screen";
 import { saveDeckTitle } from "../Utils/Api.js";
-import { addDeck } from "../Utils/index.js";
+import { addDeck } from "../Actions/index.js";
 
 export default class AddDeck extends React.Component {
   state = {
