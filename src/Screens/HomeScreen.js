@@ -5,23 +5,23 @@ import {
   heightPercentageToDP as hp
 } from "react-native-responsive-screen";
 
-export default class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
   static navigationOptions = {
     title: "FlashCard Title"
   };
+
   render() {
-    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigate("Decks", {})}
+          onPress={() => this.props.navigation.navigate("Decks", {})}
         >
           <Text style={styles.text}>Decks</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigate("Info", {})}
+          onPress={() => this.props.navigation.navigate("Info", {})}
         >
           <Text style={styles.text}>Info</Text>
         </TouchableOpacity>
@@ -56,3 +56,5 @@ const styles = StyleSheet.create({
     borderLeftColor: "orange"
   }
 });
+
+export default HomeScreen;

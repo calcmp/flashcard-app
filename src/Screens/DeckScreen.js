@@ -1,7 +1,7 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
-import { getData, getDecks } from "../Utils/Api.js";
-import { receiveDecks } from "../Actions/index.js";
+import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
+import { getDecks } from "../Utils/Api.js";
+import { receiveDecks } from "../Actions";
 import { connect } from "react-redux";
 import {
   widthPercentageToDP as wp,
@@ -18,54 +18,58 @@ class DeckScreen extends React.Component {
   }
 
   render() {
-    const { navigate } = this.props.navigation;
     const { decks } = this.props;
-
+    console.log(this.props.decks);
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         {Object.keys(decks).map(deck => {
           const { title, questions } = decks[deck];
           return (
             <View key={deck}>
-              <TouchableOpacity
+              <Button
+                title="view deck"
                 style={styles.button}
-                onPress={() => navigate("DeckView", { entryId: deck })}
-              >
-                <Text style={styles.text}>{title}</Text>
-                <Text>{questions.length}</Text>
-              </TouchableOpacity>
+                onPress={() =>
+                  this.props.navigation.navigate("DeckView", { entryId: deck })
+                }
+              />
+              <Text style={styles.text}>{title}</Text>
+              <Text>{questions.length}</Text>
             </View>
           );
         })}
-      </View>
+        <View>
+          <Button
+            title="add deck"
+            style={styles.button}
+            onPress={() => this.props.navigation.navigate("AddDeck", {})}
+          />
+        </View>
+        <View>
+          <Button
+            title="remove deck"
+            style={styles.button}
+            onPress={() => this.props.navigation.navigate("RemoveDeck", {})}
+          />
+        </View>
+      </ScrollView>
     );
   }
 }
 
-/*const mapStateToProps = decks => {
-  return decks;
+const mapStateToProps = decks => {
+  return { decks };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     receiveAllDecks: decks => dispatch(receiveDecks(decks))
   };
-};*/
-
-function mapStateToProps(decks) {
-  return decks;
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    receiveAllDecks: decks => dispatch(receiveDecks(decks))
-  };
-}
+};
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: "row"
+    flex: 1
   },
   button: {
     height: hp("30%"),

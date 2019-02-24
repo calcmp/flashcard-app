@@ -32,16 +32,6 @@ const initialData = {
         correctAnswer: "true"
       }
     ]
-  },
-  Maths: {
-    title: "Maths",
-    questions: [
-      {
-        question: "What is a maths",
-        answer: "Calc",
-        correctAnswer: "true"
-      }
-    ]
   }
 };
 
@@ -60,11 +50,25 @@ export function getDecks(deck) {
   });
 }
 
-export function saveDeckTitle() {
-  return AsyncStorage.getItem(
+export function saveDeckTitle(title) {
+  return AsyncStorage.mergeItem(
     FLASHCARDS_STORAGE_KEY,
     JSON.stringify({
       [title]: { title: title, questions: [] }
     })
   );
+}
+
+export function removeDeckTitle(title) {
+  return AsyncStorage.removeItem(title);
+}
+
+export function addCardToDeck(name, card) {
+  return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
+    .then(results => JSON.parse(results))
+    .then(results => {
+      results[name].questions.push(card);
+      AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(results));
+      return results;
+    });
 }

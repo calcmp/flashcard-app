@@ -1,9 +1,8 @@
 import {
   ADD_DECK,
-  GET_DECKS,
+  REMOVE_DECK,
   RECEIVE_DECKS,
-  ADD_CARD_TO_DECK,
-  REMOVE_DECK
+  ADD_CARD_TO_DECK
 } from "../Actions/index.js";
 
 function deck(state = {}, action) {
@@ -19,6 +18,8 @@ function deck(state = {}, action) {
         ...state,
         ...newDeck
       };
+    case REMOVE_DECK:
+      console.log("Got a deselect", state, action);
     case RECEIVE_DECKS:
       return {
         ...state,

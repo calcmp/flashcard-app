@@ -1,17 +1,16 @@
 import React from "react";
-import { StyleSheet, Text, View, TextInput } from "react-native";
+import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from "react-native-responsive-screen";
-import { saveDeckTitle } from "../Utils/Api.js";
-import { addDeck } from "../Actions";
+import { removeDeckTitle } from "../Utils/Api.js";
+import { removeDeck } from "../Actions";
 import { connect } from "react-redux";
-import SubmitButton from "./SubmitButton";
 
-class AddDeck extends React.Component {
+class RemoveDeck extends React.Component {
   static navigationOptions = {
-    title: "AddDeck"
+    title: "RemoveDeck"
   };
 
   state = {
@@ -21,9 +20,9 @@ class AddDeck extends React.Component {
   submitName = () => {
     const { text } = this.state;
 
-    saveDeckTitle(text);
-    this.props.dispatch(addDeck(text));
-    this.props.navigation.navigate("DeckView", { entryId: text });
+    removeDeckTitle(text);
+    this.props.dispatch(removeDeck(text));
+    this.props.navigation.navigate("DeckScreen", {});
     this.setState({ text: "" });
   };
 
@@ -36,11 +35,7 @@ class AddDeck extends React.Component {
           onChangeText={text => this.setState({ text: text })}
           value={this.state.text}
         />
-        <SubmitButton
-          btnStyle={styles.submitBtn}
-          textStyle={styles.submitBtnText}
-          onPress={this.submitName}
-        />
+        <Button onPress={this.submitName} title="submit" />
       </View>
     );
   }
@@ -60,19 +55,7 @@ const styles = StyleSheet.create({
     borderColor: "orange",
     margin: 50,
     borderRadius: 8
-  },
-  submitBtnText: {
-    color: "white",
-    fontSize: 22,
-    textAlign: "center"
-  },
-  submitBtn: {
-    borderWidth: 0.5,
-    padding: 10,
-    backgroundColor: "orange",
-    borderRadius: 7,
-    overflow: "hidden"
   }
 });
 
-export default connect()(AddDeck);
+export default connect()(RemoveDeck);
