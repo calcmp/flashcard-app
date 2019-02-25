@@ -21,10 +21,12 @@ class AddDeck extends React.Component {
   submitName = () => {
     const { text } = this.state;
 
-    saveDeckTitle(text);
-    this.props.dispatch(addDeck(text));
-    this.props.navigation.navigate("DeckView", { entryId: text });
-    this.setState({ text: "" });
+    if (this.state.text) {
+      saveDeckTitle(text);
+      this.props.dispatch(addDeck(text));
+      this.props.navigation.navigate("DeckView", { entryId: text });
+      this.setState({ text: "" });
+    }
   };
 
   render() {
@@ -36,11 +38,7 @@ class AddDeck extends React.Component {
           onChangeText={text => this.setState({ text: text })}
           value={this.state.text}
         />
-        <SubmitButton
-          btnStyle={styles.submitBtn}
-          textStyle={styles.submitBtnText}
-          onPress={this.submitName}
-        />
+        <SubmitButton styles={styles} onPress={this.submitName} />
       </View>
     );
   }

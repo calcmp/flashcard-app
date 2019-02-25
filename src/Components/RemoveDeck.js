@@ -7,6 +7,7 @@ import {
 import { removeDeckTitle } from "../Utils/Api.js";
 import { removeDeck } from "../Actions";
 import { connect } from "react-redux";
+import SubmitButton from "./SubmitButton.js";
 
 class RemoveDeck extends React.Component {
   static navigationOptions = {
@@ -35,7 +36,11 @@ class RemoveDeck extends React.Component {
           onChangeText={text => this.setState({ text: text })}
           value={this.state.text}
         />
-        <Button onPress={this.submitName} title="submit" />
+        <SubmitButton
+          styles={styles}
+          onPress={this.submitName}
+          title="submit"
+        />
       </View>
     );
   }
@@ -55,6 +60,18 @@ const styles = StyleSheet.create({
     borderColor: "orange",
     margin: 50,
     borderRadius: 8
+  },
+  submitBtn: {
+    borderWidth: 0.5,
+    padding: 10,
+    backgroundColor: "orange",
+    borderRadius: 7,
+    overflow: "hidden"
+  },
+  submitBtnText: {
+    color: "white",
+    fontSize: 22,
+    textAlign: "center"
   }
 });
 

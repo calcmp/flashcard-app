@@ -27,7 +27,7 @@ class DeckView extends React.Component {
           styles={styles}
           text={"Start Quiz"}
           onPress={() =>
-            this.props.navigation.navigate("StartQuiz", { entryId: deck })
+            this.props.navigation.navigate("Quiz", { entryId: deck })
           }
         />
       </View>

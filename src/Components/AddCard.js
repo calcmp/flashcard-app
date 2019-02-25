@@ -25,12 +25,15 @@ class AddCard extends React.Component {
 
   submitCard = deck => {
     const { question, answer, correctAnswer } = this.state;
-    this.props.dispatch(addCard({ question, answer, correctAnswer, deck }));
 
-    addCardToDeck(deck, { question, answer, correctAnswer });
-    this.setState({ question: "", answer: "", correctAnswer: "" });
+    if (question && answer) {
+      this.props.dispatch(addCard({ question, answer, correctAnswer, deck }));
 
-    this.props.navigation.dispatch(NavigationActions.back({ key: null }));
+      addCardToDeck(deck, { question, answer, correctAnswer });
+      this.setState({ question: "", answer: "", correctAnswer: "" });
+
+      this.props.navigation.dispatch(NavigationActions.back({ key: null }));
+    }
   };
 
   render() {
@@ -58,8 +61,7 @@ class AddCard extends React.Component {
             value={this.state.correctAnswer}
           />
           <SubmitButton
-            btnStyle={styles.submitBtn}
-            textStyle={styles.submitBtnText}
+            styles={styles}
             onPress={() => this.submitCard(deckName)}
           />
         </View>

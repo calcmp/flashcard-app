@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, TouchableOpacity } from "react-native";
 
-const ActionButton = ({ onPress, styles, text }) => {
+const InfoButton = ({ onPress, styles, text }) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.submitBtn}>
       <Text style={styles.submitBtnText}>{text}</Text>
@@ -9,4 +9,4 @@ const ActionButton = ({ onPress, styles, text }) => {
   );
 };
 
-export default ActionButton;
+export default InfoButton;

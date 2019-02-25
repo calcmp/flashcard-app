@@ -9,6 +9,7 @@ import AddDeck from "../Components/AddDeck.js";
 import DeckView from "../Screens/DeckView.js";
 import RemoveDeck from "../Components/RemoveDeck.js";
 import AddCard from "../Components/AddCard.js";
+import Quiz from "../Components/Quiz.js";
 
 import { Provider } from "react-redux";
 import reducer from "../Reducers";
@@ -34,7 +35,8 @@ const AppStackNavigator = createStackNavigator(
     AddDeck: AddDeck,
     RemoveDeck: RemoveDeck,
     DeckView: DeckView,
-    AddCard: AddCard
+    AddCard: AddCard,
+    Quiz: Quiz
   },
   {
     defaultNavigationOptions: {

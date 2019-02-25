@@ -20,6 +20,14 @@ function deck(state = {}, action) {
       };
     case REMOVE_DECK:
       console.log("Got a deselect", state, action);
+      return {
+        ...state,
+        [action.deck]: [
+          ...state.decks.slice(0, action.deck),
+          ...state.decks.slice(action.deck + 1)
+        ]
+      };
+
     case RECEIVE_DECKS:
       return {
         ...state,
