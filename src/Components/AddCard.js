@@ -9,14 +9,10 @@ import {
 import { addCardToDeck } from "../Utils/Api.js";
 import { connect } from "react-redux";
 import { addCard } from "../Actions";
-import { NavigationActions } from "react-navigation";
 import SubmitButton from "./SubmitButton.js";
+import { NavigationActions } from "react-navigation";
 
 class AddCard extends React.Component {
-  static navigationOptions = {
-    title: "Add Card"
-  };
-
   state = {
     question: "",
     answer: "",
@@ -28,10 +24,9 @@ class AddCard extends React.Component {
 
     if (question && answer) {
       this.props.dispatch(addCard({ question, answer, correctAnswer, deck }));
-
       addCardToDeck(deck, { question, answer, correctAnswer });
       this.setState({ question: "", answer: "", correctAnswer: "" });
-
+      //this.props.navigation.navigate("DeckScreen", {});
       this.props.navigation.dispatch(NavigationActions.back({ key: null }));
     }
   };

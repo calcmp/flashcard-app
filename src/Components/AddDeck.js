@@ -10,10 +10,6 @@ import { connect } from "react-redux";
 import SubmitButton from "./SubmitButton";
 
 class AddDeck extends React.Component {
-  static navigationOptions = {
-    title: "AddDeck"
-  };
-
   state = {
     text: ""
   };
@@ -24,7 +20,7 @@ class AddDeck extends React.Component {
     if (this.state.text) {
       saveDeckTitle(text);
       this.props.dispatch(addDeck(text));
-      this.props.navigation.navigate("DeckView", { entryId: text });
+      this.props.navigation.navigate("DeckScreen", { entryId: text });
       this.setState({ text: "" });
     }
   };

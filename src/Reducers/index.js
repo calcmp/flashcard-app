@@ -2,7 +2,8 @@ import {
   ADD_DECK,
   REMOVE_DECK,
   RECEIVE_DECKS,
-  ADD_CARD_TO_DECK
+  ADD_CARD_TO_DECK,
+  REMOVE_CARD
 } from "../Actions/index.js";
 
 function deck(state = {}, action) {
@@ -19,15 +20,10 @@ function deck(state = {}, action) {
         ...newDeck
       };
     case REMOVE_DECK:
-      console.log("Got a deselect", state, action);
+      delete state[action.deck];
       return {
-        ...state,
-        [action.deck]: [
-          ...state.decks.slice(0, action.deck),
-          ...state.decks.slice(action.deck + 1)
-        ]
+        ...state
       };
-
     case RECEIVE_DECKS:
       return {
         ...state,
@@ -44,6 +40,12 @@ function deck(state = {}, action) {
             { question, answer, correctAnswer }
           ]
         }
+      };
+    case REMOVE_CARD:
+      const questNum = action.card;
+      state[action.deck].questions.splice(questNum, 1);
+      return {
+        ...state
       };
     default:
       return state;

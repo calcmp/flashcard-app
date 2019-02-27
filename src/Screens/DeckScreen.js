@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
+import { StyleSheet, View, ScrollView } from "react-native";
 import { getDecks } from "../Utils/Api.js";
 import { receiveDecks } from "../Actions";
 import { connect } from "react-redux";
@@ -7,50 +7,44 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from "react-native-responsive-screen";
+import Deck from "../Components/Deck.js";
+import DeckDetails from "../Components/DeckDetails.js";
+import Divider from "../Components/Divider.js";
 
 class DeckScreen extends React.Component {
-  static navigationOptions = {
-    title: "Decks"
-  };
-
   componentDidMount() {
     getDecks().then(decks => this.props.receiveAllDecks(decks));
   }
+
+  goDeckView = deck => {
+    this.props.navigation.navigate("DeckView", { entryId: deck });
+  };
 
   render() {
     const { decks } = this.props;
     console.log(this.props.decks);
     return (
-      <ScrollView style={styles.container}>
-        {Object.keys(decks).map(deck => {
-          const { title, questions } = decks[deck];
-          return (
-            <View key={deck}>
-              <Button
-                title="view deck"
-                style={styles.button}
-                onPress={() =>
-                  this.props.navigation.navigate("DeckView", { entryId: deck })
-                }
-              />
-              <Text style={styles.text}>{title}</Text>
-              <Text>{questions.length}</Text>
-            </View>
-          );
-        })}
-        <View>
-          <Button
-            title="add deck"
-            style={styles.button}
-            onPress={() => this.props.navigation.navigate("AddDeck", {})}
-          />
-        </View>
-        <View>
-          <Button
-            title="remove deck"
-            style={styles.button}
-            onPress={() => this.props.navigation.navigate("RemoveDeck", {})}
-          />
+      <ScrollView>
+        <View style={styles.container}>
+          {Object.keys(decks).map(deck => {
+            const { title, questions } = decks[deck];
+            return (
+              <View key={deck}>
+                <Deck
+                  styles={styles}
+                  title={title}
+                  onPress={() => {
+                    this.goDeckView(deck);
+                  }}
+                />
+                <DeckDetails
+                  styles={styles}
+                  questionLength={questions.length}
+                />
+                <Divider styles={styles} />
+              </View>
+            );
+          })}
         </View>
       </ScrollView>
     );
@@ -69,25 +63,44 @@ const mapDispatchToProps = dispatch => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    justifyContent: "center",
+    paddingTop: 20,
+    paddingBottom: 10
   },
   button: {
-    height: hp("30%"),
-    width: wp("50%"),
+    flex: 1,
+    height: hp("20%"),
     backgroundColor: "#efefef",
-    alignItems: "center",
+    marginBottom: 10,
     justifyContent: "center",
-    borderLeftWidth: 1,
-    borderRightWidth: 1,
-    borderBottomWidth: 2,
-    borderBottomColor: "orange",
-    borderLeftColor: "orange",
-    borderRightColor: "orange"
+    marginHorizontal: 20,
+    borderRadius: 10
   },
-  text: {
-    fontSize: 30,
+  titleText: {
+    fontSize: 18,
     fontFamily: "sans-serif-light",
-    color: "#333333"
+    color: "#3c3c3c",
+    textAlign: "center"
+  },
+  cardText: {
+    fontSize: 12,
+    fontFamily: "sans-serif-light",
+    color: "#3c3c3c"
+  },
+  deckDetails: {
+    flex: 1
+  },
+  descContainer: {
+    flexDirection: "row",
+    paddingTop: 10,
+    paddingBottom: 20,
+    paddingHorizontal: 30
+  },
+  divider: {
+    borderBottomWidth: 2,
+    borderBottomColor: "#cccccc",
+    marginBottom: 20
   }
 });
 

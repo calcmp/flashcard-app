@@ -60,7 +60,13 @@ export function saveDeckTitle(title) {
 }
 
 export function removeDeckTitle(title) {
-  return AsyncStorage.removeItem(title);
+  return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
+    .then(results => JSON.parse(results))
+    .then(results => {
+      delete results[title];
+      AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(results));
+      return results;
+    });
 }
 
 export function addCardToDeck(name, card) {
@@ -68,6 +74,16 @@ export function addCardToDeck(name, card) {
     .then(results => JSON.parse(results))
     .then(results => {
       results[name].questions.push(card);
+      AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(results));
+      return results;
+    });
+}
+
+export function removeCardTitle(card, questNum) {
+  return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
+    .then(results => JSON.parse(results))
+    .then(results => {
+      results[card].questions.splice(questNum, 1);
       AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(results));
       return results;
     });
