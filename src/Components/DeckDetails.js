@@ -1,20 +1,14 @@
 import React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Text, View } from "react-native";
+import RemoveDeck from "./RemoveDeck.js";
 
-const DeckDetails = ({ styles, questionLength }) => {
+const DeckDetails = ({ styles, questionLength, deckId }) => {
   return (
     <View style={styles.descContainer}>
       <View style={styles.deckDetails}>
         <Text style={styles.cardText}>Cards: {questionLength}</Text>
       </View>
-      <TouchableOpacity>
-        <MaterialCommunityIcons
-          name="dots-vertical"
-          size={20}
-          color="#3c3c3c"
-        />
-      </TouchableOpacity>
+      <RemoveDeck deckId={deckId} />
     </View>
   );
 };

@@ -1,7 +1,5 @@
 import React from "react";
 import { StyleSheet, View, ScrollView } from "react-native";
-import { getDecks } from "../Utils/Api.js";
-import { receiveDecks } from "../Actions";
 import { connect } from "react-redux";
 import {
   widthPercentageToDP as wp,
@@ -9,7 +7,8 @@ import {
 } from "react-native-responsive-screen";
 import Deck from "../Components/Deck.js";
 import DeckDetails from "../Components/DeckDetails.js";
-import Divider from "../Components/Divider.js";
+import { getDecks } from "../Utils/Api.js";
+import { receiveDecks } from "../Actions/index.js";
 
 class DeckScreen extends React.Component {
   componentDidMount() {
@@ -18,6 +17,10 @@ class DeckScreen extends React.Component {
 
   goDeckView = deck => {
     this.props.navigation.navigate("DeckView", { entryId: deck });
+  };
+
+  goRemoveView = deck => {
+    this.props.navigation.navigate("RemoveDeck", { entryId: deck });
   };
 
   render() {
@@ -40,8 +43,8 @@ class DeckScreen extends React.Component {
                 <DeckDetails
                   styles={styles}
                   questionLength={questions.length}
+                  deckId={deck}
                 />
-                <Divider styles={styles} />
               </View>
             );
           })}
@@ -66,7 +69,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     paddingTop: 20,
-    paddingBottom: 10
+    paddingBottom: 10,
+    backgroundColor: "white"
   },
   button: {
     flex: 1,
@@ -74,17 +78,20 @@ const styles = StyleSheet.create({
     backgroundColor: "#efefef",
     marginBottom: 10,
     justifyContent: "center",
-    marginHorizontal: 20,
-    borderRadius: 10
+    borderWidth: 0.5,
+    borderColor: "#adadad",
+    borderBottomWidth: 1,
+    elevation: 0.5,
+    marginHorizontal: 20
   },
   titleText: {
-    fontSize: 18,
+    fontSize: 20,
     fontFamily: "sans-serif-light",
     color: "#3c3c3c",
     textAlign: "center"
   },
   cardText: {
-    fontSize: 12,
+    fontSize: 16,
     fontFamily: "sans-serif-light",
     color: "#3c3c3c"
   },

@@ -1,13 +1,9 @@
 import React from "react";
 import { StyleSheet, Text, View, TextInput } from "react-native";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp
-} from "react-native-responsive-screen";
 import { saveDeckTitle } from "../Utils/Api.js";
-import { addDeck } from "../Actions";
+import { addDeck } from "../Actions/index.js";
 import { connect } from "react-redux";
-import SubmitButton from "./SubmitButton";
+import SubmitButton from "../Components/SubmitButton.js";
 
 class AddDeck extends React.Component {
   state = {

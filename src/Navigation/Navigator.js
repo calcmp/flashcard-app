@@ -8,11 +8,10 @@ import {
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import DeckScreen from "../Screens/DeckScreen.js";
-import InfoScreen from "../Screens/InfoScreen.js";
-import AddDeck from "../Components/AddDeck.js";
-import DeckView from "../Components/DeckView.js";
+import AddDeck from "../Screens/AddDeck.js";
+import DeckView from "../Screens/DeckView.js";
 import RemoveDeck from "../Components/RemoveDeck.js";
-import AddCard from "../Components/AddCard.js";
+import AddCard from "../Screens/AddCard.js";
 import RemoveCard from "../Components/RemoveCard.js";
 
 import { Provider } from "react-redux";

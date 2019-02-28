@@ -8,25 +8,23 @@ import {
 } from "react-native";
 import { addCardToDeck } from "../Utils/Api.js";
 import { connect } from "react-redux";
-import { addCard } from "../Actions";
-import SubmitButton from "./SubmitButton.js";
+import { addCard } from "../Actions/index.js";
+import SubmitButton from "../Components/SubmitButton.js";
 import { NavigationActions } from "react-navigation";
 
 class AddCard extends React.Component {
   state = {
     question: "",
-    answer: "",
-    correctAnswer: ""
+    answer: ""
   };
 
   submitCard = deck => {
-    const { question, answer, correctAnswer } = this.state;
+    const { question, answer } = this.state;
 
     if (question && answer) {
-      this.props.dispatch(addCard({ question, answer, correctAnswer, deck }));
-      addCardToDeck(deck, { question, answer, correctAnswer });
-      this.setState({ question: "", answer: "", correctAnswer: "" });
-      //this.props.navigation.navigate("DeckScreen", {});
+      this.props.dispatch(addCard({ question, answer, deck }));
+      addCardToDeck(deck, { question, answer });
+      this.setState({ question: "", answer: "" });
       this.props.navigation.dispatch(NavigationActions.back({ key: null }));
     }
   };
@@ -48,12 +46,6 @@ class AddCard extends React.Component {
             style={styles.input}
             onChangeText={answer => this.setState({ answer })}
             value={this.state.answer}
-          />
-          <Text style={styles.title}>True/False: </Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={correctAnswer => this.setState({ correctAnswer })}
-            value={this.state.correctAnswer}
           />
           <SubmitButton
             styles={styles}

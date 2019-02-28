@@ -1,77 +1,46 @@
 import React from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp
-} from "react-native-responsive-screen";
+import { StyleSheet, Alert } from "react-native";
 import { removeDeckTitle } from "../Utils/Api.js";
-import { removeDeck } from "../Actions";
+import { removeDeck } from "../Actions/index.js";
 import { connect } from "react-redux";
-import SubmitButton from "./SubmitButton.js";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 class RemoveDeck extends React.Component {
-  static navigationOptions = {
-    title: "RemoveDeck"
+  submitRemove = deck => {
+    console.log("deck: ", deck);
+    removeDeckTitle(deck);
+    this.props.dispatch(removeDeck(deck));
   };
 
-  state = {
-    text: ""
-  };
-
-  submitName = () => {
-    const { text } = this.state;
-
-    removeDeckTitle(text);
-    this.props.dispatch(removeDeck(text));
-    this.props.navigation.navigate("DeckScreen", {});
-    this.setState({ text: "" });
+  goConfirmView = deck => {
+    Alert.alert("Remove Deck", "Are you sure you want to remove this deck?", [
+      {
+        text: "No"
+      },
+      {
+        text: "Yes",
+        onPress: () => this.submitRemove(deck)
+      }
+    ]);
   };
 
   render() {
+    const deckId = this.props.deckId;
+
     return (
-      <View style={styles.container}>
-        <Text>Deck title: </Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={text => this.setState({ text: text })}
-          value={this.state.text}
-        />
-        <SubmitButton
-          styles={styles}
-          onPress={this.submitName}
-          title="submit"
-        />
-      </View>
+      <MaterialCommunityIcons
+        style={styles.removeBtn}
+        name="minus-box"
+        size={30}
+        onPress={() => this.goConfirmView(deckId)}
+      />
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  input: {
-    width: 200,
-    height: 44,
-    padding: 8,
-    borderWidth: 1,
-    borderColor: "orange",
-    margin: 50,
-    borderRadius: 8
-  },
-  submitBtn: {
-    borderWidth: 0.5,
-    padding: 10,
-    backgroundColor: "orange",
-    borderRadius: 7,
-    overflow: "hidden"
-  },
-  submitBtnText: {
-    color: "white",
-    fontSize: 22,
-    textAlign: "center"
+  removeBtn: {
+    color: "#ff0000"
   }
 });
 

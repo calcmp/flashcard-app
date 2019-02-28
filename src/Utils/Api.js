@@ -4,32 +4,19 @@ const FLASHCARDS_STORAGE_KEY = "flashcards: decks";
 
 const initialData = {
   Geography: {
-    title: "Geography",
+    title: "Sample Deck: Geography",
     questions: [
       {
         question: "Is South Africa a country?",
-        answer: "No, it's a continent.",
-        correctAnswer: "false"
+        answer: "No, it's a continent."
       },
       {
-        question: "Which US State is next to Cali?",
-        answer: "NY",
-        correctAnswer: "false"
-      }
-    ]
-  },
-  JS: {
-    title: "JavaScript",
-    questions: [
-      {
-        question: "What is a closure",
-        answer: "Combination of a function and the lexical environment",
-        correctAnswer: "true"
+        question: "What is the worlds highest mountain?",
+        answer: "Mount Everest"
       },
       {
-        question: "What is a variable",
-        answer: "Stores info",
-        correctAnswer: "true"
+        question: "What is the longest river in the world?",
+        answer: "Nile"
       }
     ]
   }
