@@ -1,29 +1,30 @@
 {
   "expo": {
-    "name": "flashcard",
+    "name": "Flashcard Express",
     "slug": "flashcard",
     "privacy": "public",
     "sdkVersion": "32.0.0",
-    "platforms": [
-      "ios",
-      "android"
-    ],
-    "version": "1.0.0",
+    "platforms": ["ios", "android"],
+    "version": "4.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#3cd3ff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.callumpenny.flashcard"
+    },
+    "android": {
+      "package": "com.callumpenny.flashcard",
+      "versionCode": 5,
+      "permissions": []
     }
   }
 }

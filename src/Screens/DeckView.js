@@ -17,6 +17,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { connect } from "react-redux";
 import RemoveCard from "../Components/RemoveCard.js";
 import InfoButton from "../Components/InfoButton.js";
+import { AdMobBanner } from "expo";
 
 const SCREEN_HEIGHT = Dimensions.get("window").height;
 const SCREEN_WIDTH = Dimensions.get("window").width;
@@ -173,10 +174,10 @@ class DeckView extends React.Component {
             >
               <View style={styles.container}>
                 {!this.state.showQuestion ? (
-                  <Text style={styles.deckText}>{item.question}</Text>
+                  <Text style={styles.deckTextQuestion}>{item.question}</Text>
                 ) : (
-                  <Text style={styles.deckText}>
-                    <Text style={styles.deckText}>{item.answer}</Text>
+                  <Text numberOfLines={13} style={styles.deckTextAnswer}>
+                    {item.answer}
                   </Text>
                 )}
                 {!this.state.showQuestion ? (
@@ -202,7 +203,9 @@ class DeckView extends React.Component {
                   name="plus-box"
                   size={30}
                   onPress={() =>
-                    this.props.navigation.navigate("AddCard", { entryId: deck })
+                    this.props.navigation.navigate("AddCard", {
+                      entryId: deck
+                    })
                   }
                 />
                 <View style={styles.cardNumContainer}>
@@ -214,26 +217,31 @@ class DeckView extends React.Component {
               <Animated.View
                 style={{
                   opacity: this.correctOpacity,
-                  transform: [{ rotate: "30deg" }],
+                  transform: [{ rotate: "10deg" }],
                   position: "absolute",
-                  top: 50,
-                  right: 40,
+                  alignSelf: "center",
+                  top: 160,
                   zIndex: 1000
                 }}
               >
-                <Text style={styles.correct}>CORRECT</Text>
+                <MaterialCommunityIcons
+                  style={styles.correct}
+                  name="check"
+                  size={100}
+                />
               </Animated.View>
+
               <Animated.View
                 style={{
                   opacity: this.wrongOpacity,
-                  transform: [{ rotate: "-30deg" }],
+                  transform: [{ rotate: "-10deg" }],
                   position: "absolute",
-                  top: 50,
-                  left: 40,
+                  alignSelf: "center",
+                  top: 160,
                   zIndex: 1000
                 }}
               >
-                <Text style={styles.wrong}>WRONG</Text>
+                <Text style={styles.wrong}> X </Text>
               </Animated.View>
             </Animated.View>
           );
@@ -254,11 +262,9 @@ class DeckView extends React.Component {
             >
               <View style={styles.container}>
                 {!this.state.showQuestion ? (
-                  <Text style={styles.deckText}>{item.question}</Text>
+                  <Text style={styles.deckTextQuestion}>{item.question}</Text>
                 ) : (
-                  <Text style={styles.deckText}>
-                    <Text style={styles.deckText}>{item.answer}</Text>
-                  </Text>
+                  <Text style={styles.deckTextAnswer}>{item.answer}</Text>
                 )}
 
                 {!this.state.showQuestion ? (
@@ -317,22 +323,21 @@ class DeckView extends React.Component {
           <View style={{ height: 10 }} />
           <View style={{ flex: 1 }}>
             <Animated.View
-              style={[
-                this.rotateAndTranslate,
-                {
-                  height: SCREEN_HEIGHT - 460,
-                  width: SCREEN_WIDTH,
-                  padding: 10,
-                  position: "absolute",
-                  flex: 1
-                }
-              ]}
+              style={{
+                height: SCREEN_HEIGHT - 260,
+                width: SCREEN_WIDTH,
+                padding: 10,
+                position: "absolute",
+                flex: 1
+              }}
             >
               <View style={styles.container}>
-                <Text style={styles.deckText}>
-                  Correct: {this.state.correct} / {decks[deck].questions.length}
-                  {"\n"}
-                  Incorrect: {this.state.incorrect} /{" "}
+                <Text style={styles.correctText}>
+                  Correct: {this.state.correct}/{decks[deck].questions.length}
+                </Text>
+                <Text style={styles.deckText} />
+                <Text style={styles.incorrectText}>
+                  Incorrect: {this.state.incorrect}/
                   {decks[deck].questions.length}
                 </Text>
 
@@ -346,11 +351,18 @@ class DeckView extends React.Component {
                 <TouchableOpacity style={styles.back} onPress={this.goBack}>
                   <Text style={styles.deckText}>Back</Text>
                 </TouchableOpacity>
+                <View style={styles.cardNumContainer} />
               </View>
             </Animated.View>
 
             <View style={{ height: 10 }} />
           </View>
+          <AdMobBanner
+            bannerSize="smartBannerLandscape"
+            adUnitID="ca-app-pub-7050295070567611/6019121783" // Test ID, Replace with your-admob-unit-id
+            testDeviceID="EMULATOR"
+            onDidFailToReceiveAdWithError={this.bannerError}
+          />
         </View>
       );
     }
@@ -360,18 +372,29 @@ class DeckView extends React.Component {
           <View style={{ height: 10 }} />
           <View style={{ flex: 1 }}>
             <Animated.View
-              style={[
-                this.rotateAndTranslate,
-                {
-                  height: SCREEN_HEIGHT - 160,
-                  width: SCREEN_WIDTH,
-                  padding: 10,
-                  position: "absolute",
-                  flex: 1
-                }
-              ]}
+              style={{
+                height: SCREEN_HEIGHT - 160,
+                width: SCREEN_WIDTH,
+                padding: 10,
+                position: "absolute",
+                flex: 1
+              }}
             >
               <View style={styles.container}>
+                <Text style={styles.deckTextAnswer}>
+                  Tap the{" "}
+                  <MaterialCommunityIcons
+                    style={styles.addBtn}
+                    name="plus-box"
+                    size={30}
+                    onPress={() =>
+                      this.props.navigation.navigate("AddCard", {
+                        entryId: deck
+                      })
+                    }
+                  />{" "}
+                  icon to add your first card!
+                </Text>
                 <RemoveCard
                   deckId={deck}
                   currentQNumId={currentQNum}
@@ -425,16 +448,9 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     borderRadius: 20,
     backgroundColor: "white",
-    marginHorizontal: 6
-  },
-  swipe: {
-    flex: 1,
-    height: hp("20%"),
-    backgroundColor: "white",
-    marginBottom: 60,
-    width: wp("90%"),
-    marginHorizontal: 10,
-    borderRadius: 10
+    marginHorizontal: 6,
+    justifyContent: "center",
+    alignItems: "center"
   },
   cardNumText: {
     fontFamily: "sans-serif-light",
@@ -457,9 +473,27 @@ const styles = StyleSheet.create({
     fontFamily: "sans-serif-light",
     color: "#3c3c3c",
     textAlign: "center",
-    fontSize: 18,
+    fontSize: 20,
     marginTop: 30,
     marginHorizontal: 30
+  },
+  deckTextQuestion: {
+    fontFamily: "sans-serif-light",
+    color: "#3c3c3c",
+    textAlign: "center",
+    justifyContent: "center",
+    marginTop: -100,
+    fontSize: 30,
+    marginHorizontal: 30
+  },
+  deckTextAnswer: {
+    fontFamily: "sans-serif-light",
+    color: "#3c3c3c",
+    textAlign: "center",
+    paddingTop: 50,
+    marginTop: -100,
+    marginHorizontal: 30,
+    fontSize: 30
   },
   submitBtnText: {
     color: "#3c3c3c",
@@ -485,7 +519,7 @@ const styles = StyleSheet.create({
     width: null,
     flex: 1,
     marginBottom: 14,
-    alignSelf: "flex-start"
+    alignSelf: "flex-end"
   },
   back: {
     padding: 10,
@@ -495,7 +529,7 @@ const styles = StyleSheet.create({
     width: null,
     flex: 1,
     marginBottom: 14,
-    alignSelf: "flex-end"
+    alignSelf: "flex-start"
   },
   addBtn: {
     color: "#ff0000",
@@ -510,17 +544,36 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "green",
     color: "green",
-    fontSize: 32,
-    fontWeight: "800",
-    padding: 10
+    padding: 10,
+    borderRadius: 6
   },
   wrong: {
     borderWidth: 1,
     borderColor: "red",
     color: "red",
-    fontSize: 32,
+    fontSize: 70,
     fontWeight: "800",
-    padding: 10
+    padding: 20,
+    borderRadius: 6
+  },
+  correctText: {
+    borderWidth: 1,
+    borderColor: "green",
+    color: "green",
+    fontSize: 34,
+    padding: 10,
+    borderRadius: 6,
+    fontFamily: "sans-serif-light",
+    marginTop: -60
+  },
+  incorrectText: {
+    borderWidth: 1,
+    borderColor: "red",
+    color: "red",
+    fontSize: 30,
+    padding: 10,
+    borderRadius: 6,
+    fontFamily: "sans-serif-light"
   }
 });
 

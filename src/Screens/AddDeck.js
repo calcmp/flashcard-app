@@ -1,9 +1,17 @@
 import React from "react";
-import { StyleSheet, Text, View, TextInput } from "react-native";
+import { StyleSheet, View, TextInput, Dimensions } from "react-native";
 import { saveDeckTitle } from "../Utils/Api.js";
 import { addDeck } from "../Actions/index.js";
 import { connect } from "react-redux";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from "react-native-responsive-screen";
 import SubmitButton from "../Components/SubmitButton.js";
+import { AdMobBanner } from "expo";
+
+const SCREEN_HEIGHT = Dimensions.get("window").height;
+const SCREEN_WIDTH = Dimensions.get("window").width;
 
 class AddDeck extends React.Component {
   state = {
@@ -24,13 +32,26 @@ class AddDeck extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Deck title: </Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={text => this.setState({ text: text })}
-          value={this.state.text}
-        />
+        <View style={styles.button}>
+          <TextInput
+            style={styles.titleText}
+            multiline={true}
+            maxLength={60}
+            placeholder="Tap here to enter deck name"
+            placeholderTextColor="#3c3c3c"
+            onChangeText={text => this.setState({ text: text })}
+            value={this.state.text}
+          />
+        </View>
         <SubmitButton styles={styles} onPress={this.submitName} />
+
+        <AdMobBanner
+          style={{ position: "absolute", bottom: 0 }}
+          bannerSize="smartBannerLandscape"
+          adUnitID="ca-app-pub-7050295070567611/6019121783" // Test ID, Replace with your-admob-unit-id
+          testDeviceID="EMULATOR"
+          onDidFailToReceiveAdWithError={this.bannerError}
+        />
       </View>
     );
   }
@@ -39,29 +60,43 @@ class AddDeck extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    paddingTop: 20,
+    paddingBottom: 10,
+    backgroundColor: "white"
   },
-  input: {
-    width: 200,
-    height: 44,
-    padding: 8,
-    borderWidth: 1,
-    borderColor: "orange",
-    margin: 50,
-    borderRadius: 8
+  button: {
+    height: hp("20%"),
+    backgroundColor: "#efefef",
+    justifyContent: "center",
+    borderWidth: 0.5,
+    borderColor: "#adadad",
+    borderBottomWidth: 1,
+    elevation: 0.5,
+    marginHorizontal: 20,
+    marginTop: 20
+  },
+  titleText: {
+    fontSize: 20,
+    fontFamily: "sans-serif-light",
+    color: "#3c3c3c",
+    textAlign: "center"
   },
   submitBtnText: {
-    color: "white",
-    fontSize: 22,
+    fontSize: 20,
+    fontFamily: "sans-serif-medium",
+    color: "green",
     textAlign: "center"
   },
   submitBtn: {
-    borderWidth: 0.5,
+    borderWidth: 2,
     padding: 10,
-    backgroundColor: "orange",
-    borderRadius: 7,
-    overflow: "hidden"
+    backgroundColor: "#efefef",
+    borderRadius: 6,
+    overflow: "hidden",
+    marginTop: 20,
+    marginHorizontal: 80,
+    borderColor: "green"
   }
 });
 

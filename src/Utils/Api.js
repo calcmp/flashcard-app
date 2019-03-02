@@ -7,16 +7,26 @@ const initialData = {
     title: "Sample Deck: Geography",
     questions: [
       {
-        question: "Is South Africa a country?",
-        answer: "No, it's a continent."
+        question: "Which is the largest desert on earth?",
+        answer: "The Sahara"
       },
       {
-        question: "What is the worlds highest mountain?",
-        answer: "Mount Everest"
+        question: "What is the capital of England?",
+        answer: "London"
+      },
+      {
+        question: "What are all of the current continents of the Earth?",
+        answer:
+          "Antarctica \n North America \n South America \n Europe \n Africa \n Asia \n Australasia"
       },
       {
         question: "What is the longest river in the world?",
         answer: "Nile"
+      },
+      {
+        question: "What are the three largest cities in Australia?",
+        answer:
+          "1: Sydney: 4.452million \n 2: Melbourne: 4.269million \n 3: Brisbane: 2.177million"
       }
     ]
   }
