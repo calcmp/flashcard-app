@@ -3,7 +3,8 @@ import {
   REMOVE_DECK,
   RECEIVE_DECKS,
   ADD_CARD_TO_DECK,
-  REMOVE_CARD
+  REMOVE_CARD,
+  SHUFFLE_DECK
 } from "../Actions/index.js";
 
 function deck(state = {}, action) {
@@ -41,6 +42,11 @@ function deck(state = {}, action) {
     case REMOVE_CARD:
       const questNum = action.card;
       state[action.deck].questions.splice(questNum, 1);
+      return {
+        ...state
+      };
+    case SHUFFLE_DECK:
+      state[action.deck].questions.sort(() => Math.random() - 0.5);
       return {
         ...state
       };

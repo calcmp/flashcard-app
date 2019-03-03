@@ -51,8 +51,8 @@ class DeckScreen extends React.Component {
           })}
         </View>
         <AdMobBanner
-          bannerSize="smartBannerLandscape"
-          adUnitID="ca-app-pub-7050295070567611/6019121783" // Test ID, Replace with your-admob-unit-id
+          bannerSize="fullBanner"
+          adUnitID="ca-app-pub-1548251077535465/6579386800" // Test ID, Replace with your-admob-unit-id
           testDeviceID="EMULATOR"
           onDidFailToReceiveAdWithError={this.bannerError}
         />
@@ -89,7 +89,8 @@ const styles = StyleSheet.create({
     borderColor: "#adadad",
     borderBottomWidth: 1,
     elevation: 0.5,
-    marginHorizontal: 20
+    marginHorizontal: 20,
+    borderRadius: 2
   },
   titleText: {
     fontSize: 20,
@@ -100,7 +101,12 @@ const styles = StyleSheet.create({
   cardText: {
     fontSize: 16,
     fontFamily: "sans-serif-light",
-    color: "#3c3c3c"
+    color: "#3c3c3c",
+    justifyContent: "center",
+    textAlign: "center",
+    position: "absolute",
+    alignSelf: "center",
+    bottom: 6
   },
   deckDetails: {
     flex: 1

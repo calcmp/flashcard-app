@@ -85,3 +85,13 @@ export function removeCardTitle(card, questNum) {
       return results;
     });
 }
+
+export function shuffleDeckTitle(deck) {
+  return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
+    .then(results => JSON.parse(results))
+    .then(results => {
+      results[deck].questions.sort(() => Math.random() - 0.5);
+      AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(results));
+      return results;
+    });
+}

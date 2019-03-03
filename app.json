@@ -5,7 +5,7 @@
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": ["ios", "android"],
-    "version": "4.0.1",
+    "version": "5.0.3",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -23,7 +23,7 @@
     },
     "android": {
       "package": "com.callumpenny.flashcard",
-      "versionCode": 5,
+      "versionCode": 9,
       "permissions": []
     }
   }

@@ -9,10 +9,6 @@ import {
   Dimensions,
   TouchableOpacity
 } from "react-native";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp
-} from "react-native-responsive-screen";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { connect } from "react-redux";
 import RemoveCard from "../Components/RemoveCard.js";
@@ -358,8 +354,8 @@ class DeckView extends React.Component {
             <View style={{ height: 10 }} />
           </View>
           <AdMobBanner
-            bannerSize="smartBannerLandscape"
-            adUnitID="ca-app-pub-7050295070567611/6019121783" // Test ID, Replace with your-admob-unit-id
+            bannerSize="fullBanner"
+            adUnitID="ca-app-pub-1548251077535465/6579386800" // Test ID, Replace with your-admob-unit-id
             testDeviceID="EMULATOR"
             onDidFailToReceiveAdWithError={this.bannerError}
           />
@@ -450,7 +446,9 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     marginHorizontal: 6,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    borderWidth: 1.5,
+    borderColor: "#3cd3ff"
   },
   cardNumText: {
     fontFamily: "sans-serif-light",
@@ -460,14 +458,15 @@ const styles = StyleSheet.create({
   },
   cardNumContainer: {
     backgroundColor: "#efefef",
-    width: 80,
-    height: 60,
-    borderTopRightRadius: 80,
-    borderTopLeftRadius: 80,
+    width: 70,
+    height: 70,
+    borderRadius: 70,
     justifyContent: "center",
     position: "absolute",
-    bottom: 0,
-    alignSelf: "center"
+    bottom: 8,
+    alignSelf: "center",
+    borderWidth: 1.5,
+    borderColor: "#3cd3ff"
   },
   deckText: {
     fontFamily: "sans-serif-light",

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, TextInput, Dimensions } from "react-native";
+import { StyleSheet, View, TextInput } from "react-native";
 import { saveDeckTitle } from "../Utils/Api.js";
 import { addDeck } from "../Actions/index.js";
 import { connect } from "react-redux";
@@ -9,9 +9,6 @@ import {
 } from "react-native-responsive-screen";
 import SubmitButton from "../Components/SubmitButton.js";
 import { AdMobBanner } from "expo";
-
-const SCREEN_HEIGHT = Dimensions.get("window").height;
-const SCREEN_WIDTH = Dimensions.get("window").width;
 
 class AddDeck extends React.Component {
   state = {
@@ -24,6 +21,9 @@ class AddDeck extends React.Component {
     if (this.state.text) {
       saveDeckTitle(text);
       this.props.dispatch(addDeck(text));
+      this.props.navigation.navigate("DeckScreen", { entryId: text });
+      this.props.navigation.navigate("DeckScreen", { entryId: text });
+      this.props.navigation.navigate("DeckScreen", { entryId: text });
       this.props.navigation.navigate("DeckScreen", { entryId: text });
       this.setState({ text: "" });
     }
@@ -47,8 +47,8 @@ class AddDeck extends React.Component {
 
         <AdMobBanner
           style={{ position: "absolute", bottom: 0 }}
-          bannerSize="smartBannerLandscape"
-          adUnitID="ca-app-pub-7050295070567611/6019121783" // Test ID, Replace with your-admob-unit-id
+          bannerSize="fullBanner"
+          adUnitID="ca-app-pub-1548251077535465/6579386800" // Test ID, Replace with your-admob-unit-id
           testDeviceID="EMULATOR"
           onDidFailToReceiveAdWithError={this.bannerError}
         />

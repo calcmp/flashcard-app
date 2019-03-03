@@ -3,6 +3,7 @@ export const REMOVE_DECK = "REMOVE_DECK";
 export const RECEIVE_DECKS = "RECEIVE_DECKS";
 export const ADD_CARD_TO_DECK = "ADD_CARD_TO_DECK";
 export const REMOVE_CARD = "REMOVE_CARD";
+export const SHUFFLE_DECK = "SHUFFLE_DECK";
 
 export function addDeck(deck) {
   return {
@@ -37,5 +38,13 @@ export function removeCard(deck, card) {
     type: REMOVE_CARD,
     deck,
     card
+  };
+}
+
+export function shuffleDeck(deck, num) {
+  return {
+    type: SHUFFLE_DECK,
+    deck,
+    num
   };
 }

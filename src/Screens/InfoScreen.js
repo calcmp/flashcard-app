@@ -1,9 +1,5 @@
 import React from "react";
 import { StyleSheet, View, Animated, Dimensions, Text } from "react-native";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp
-} from "react-native-responsive-screen";
 import { AdMobBanner } from "expo";
 
 const SCREEN_HEIGHT = Dimensions.get("window").height;
@@ -45,15 +41,15 @@ class InfoScreen extends React.Component {
                 Check your results at the end of the deck.
               </Text>
               <View style={styles.cardNumContainer}>
-                <Text style={styles.cardNumText}>1/1</Text>
+                <Text style={styles.cardNumText}>1 / 1</Text>
               </View>
             </View>
           </Animated.View>
 
           <AdMobBanner
             style={{ position: "absolute", bottom: 0 }}
-            bannerSize="smartBannerLandscape"
-            adUnitID="ca-app-pub-7050295070567611/6019121783" // Test ID, Replace with your-admob-unit-id
+            bannerSize="fullBanner"
+            adUnitID="ca-app-pub-1548251077535465/6579386800" // Test ID, Replace with your-admob-unit-id
             testDeviceID="EMULATOR"
             onDidFailToReceiveAdWithError={this.bannerError}
           />
@@ -72,7 +68,10 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     borderRadius: 20,
     backgroundColor: "white",
-    marginHorizontal: 6
+    marginHorizontal: 6,
+    borderWidth: 1.5,
+    borderColor: "#3cd3ff",
+    alignItems: "center"
   },
   deckText: {
     fontFamily: "sans-serif-light",
@@ -91,14 +90,15 @@ const styles = StyleSheet.create({
   },
   cardNumContainer: {
     backgroundColor: "#efefef",
-    width: 80,
-    height: 60,
-    borderTopRightRadius: 80,
-    borderTopLeftRadius: 80,
+    width: 70,
+    height: 70,
+    borderRadius: 70,
     justifyContent: "center",
     position: "absolute",
-    bottom: 0,
-    alignSelf: "center"
+    bottom: 8,
+    alignSelf: "center",
+    borderWidth: 1.5,
+    borderColor: "#3cd3ff"
   }
 });
 
