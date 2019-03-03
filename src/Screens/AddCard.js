@@ -129,7 +129,10 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     borderRadius: 20,
     backgroundColor: "white",
-    marginHorizontal: 6
+    marginHorizontal: 6,
+    borderWidth: 1.5,
+    borderColor: "#3cd3ff",
+    alignItems: "center"
   },
   deckText: {
     fontFamily: "sans-serif-light",
@@ -159,14 +162,15 @@ const styles = StyleSheet.create({
   },
   cardNumContainer: {
     backgroundColor: "#efefef",
-    width: 80,
-    height: 60,
-    borderTopRightRadius: 80,
-    borderTopLeftRadius: 80,
+    width: 70,
+    height: 70,
+    borderRadius: 70,
     justifyContent: "center",
     position: "absolute",
-    bottom: 0,
-    alignSelf: "center"
+    bottom: 8,
+    alignSelf: "center",
+    borderWidth: 1.5,
+    borderColor: "#3cd3ff"
   },
   submitBtnText: {
     color: "#3c3c3c",

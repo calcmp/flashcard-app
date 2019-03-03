@@ -7,7 +7,7 @@ const initialData = {
     title: "Sample Deck: Geography",
     questions: [
       {
-        question: "Which is the largest desert on earth?",
+        question: "What is the largest desert on earth?",
         answer: "The Sahara"
       },
       {
