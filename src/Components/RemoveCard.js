@@ -40,7 +40,7 @@ class RemoveCard extends React.Component {
 
 const styles = StyleSheet.create({
   removeBtn: {
-    color: "#ff0000",
+    color: "hsl(330, 72%, 65%)",
     justifyContent: "center",
     position: "absolute",
     bottom: 0,

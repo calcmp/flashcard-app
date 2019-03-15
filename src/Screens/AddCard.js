@@ -48,7 +48,7 @@ class AddCard extends React.Component {
     const decks = this.props.decks;
 
     return (
-      <View style={{ flex: 1, backgroundColor: "#efefef" }}>
+      <View style={{ flex: 1 }}>
         <View style={{ height: 10 }} />
         <View style={{ flex: 1 }}>
           <Animated.View
@@ -66,7 +66,7 @@ class AddCard extends React.Component {
                 multiline={true}
                 maxLength={100}
                 placeholder="Tap here to enter the question"
-                placeholderTextColor="#3c3c3c"
+                placeholderTextColor="hsl(209, 34%, 30%)"
                 onChangeText={question => this.setState({ question })}
                 value={this.state.question}
               />
@@ -74,8 +74,8 @@ class AddCard extends React.Component {
               <TextInput
                 style={[
                   {
-                    fontFamily: "sans-serif-light",
-                    color: "#3c3c3c",
+                    fontFamily: "Roboto",
+                    color: "hsl(209, 34%, 30%)",
                     textAlign: "center",
                     fontSize: 20,
                     marginTop: 30,
@@ -86,19 +86,19 @@ class AddCard extends React.Component {
                 multiline={true}
                 maxLength={600}
                 placeholder="Tap here to enter the answer"
-                placeholderTextColor="#3c3c3c"
+                placeholderTextColor="hsl(209, 34%, 30%)"
                 onChangeText={this.onChangeTextAnswer.bind(this)}
                 value={this.state.answer}
               />
               <TouchableOpacity
-                style={styles.submitBtn}
+                style={styles.confirm}
                 onPress={() => this.submitCard(deckName)}
               >
-                <Text style={styles.submitBtnText}>Confirm{"      "}</Text>
+                <Text style={styles.confirmBtnText}>Confirm{"      "}</Text>
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.back} onPress={this.goBack}>
-                <Text style={styles.submitBtnText}>Back</Text>
+                <Text style={styles.backBtnText}>Back</Text>
               </TouchableOpacity>
               <View style={styles.cardNumContainer}>
                 <Text style={styles.cardNumText}>
@@ -127,41 +127,78 @@ const styles = StyleSheet.create({
     height: null,
     width: null,
     resizeMode: "cover",
-    borderRadius: 20,
-    backgroundColor: "white",
+    borderRadius: 10,
+    backgroundColor: "hsl(212, 33%, 89%)",
     marginHorizontal: 6,
+    alignItems: "center",
     borderWidth: 1.5,
-    borderColor: "#3cd3ff",
-    alignItems: "center"
+    borderColor: "hsl(185, 81%, 29%)"
   },
   deckText: {
-    fontFamily: "sans-serif-light",
-    color: "#3c3c3c",
+    fontFamily: "Roboto",
+    color: "hsl(209, 34%, 30%)",
     textAlign: "center",
-    fontSize: 22,
-    marginTop: 30,
+    fontSize: 20,
+    marginTop: 26,
+    marginBottom: -20,
+    marginHorizontal: 30,
+    fontWeight: "400"
+  },
+  backBtnText: {
+    fontFamily: "Roboto",
+    color: "hsl(211, 39%, 23%)",
+    textAlign: "center",
+    fontSize: 20,
+    marginBottom: 0,
     marginHorizontal: 30
   },
   back: {
-    padding: 10,
-    paddingHorizontal: 20,
-    backgroundColor: "rgba(52, 52, 52, 0)",
+    padding: 6,
+    paddingTop: 8,
+    paddingBottom: 8,
+    backgroundColor: "hsl(212, 33%, 89%)",
     position: "absolute",
     bottom: 0,
     width: null,
     flex: 1,
     marginBottom: 14,
     alignSelf: "flex-start",
-    marginLeft: 30
+    marginLeft: 16,
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: "hsl(209, 23%, 60%)"
+  },
+  confirmBtnText: {
+    fontFamily: "Roboto",
+    color: "hsl(212, 33%, 89%)",
+    textAlign: "center",
+    fontSize: 20,
+    marginBottom: 0,
+    marginLeft: 22,
+    marginRight: -8
+  },
+  confirm: {
+    padding: 2,
+    backgroundColor: "hsl(185, 81%, 29%)",
+    position: "absolute",
+    bottom: 0,
+    width: null,
+    flex: 1,
+    marginBottom: 14,
+    borderRadius: 4,
+    marginLeft: 246,
+    paddingTop: 8,
+    paddingBottom: 8,
+    alignSelf: "flex-start"
   },
   cardNumText: {
-    fontFamily: "sans-serif-light",
-    color: "#3c3c3c",
+    fontFamily: "Roboto",
+    color: "hsl(210, 36%, 65%)",
     fontSize: 20,
     textAlign: "center"
   },
   cardNumContainer: {
-    backgroundColor: "#efefef",
+    backgroundColor: "hsl(210, 36%, 96%)",
     width: 70,
     height: 70,
     borderRadius: 70,
@@ -170,27 +207,7 @@ const styles = StyleSheet.create({
     bottom: 8,
     alignSelf: "center",
     borderWidth: 1.5,
-    borderColor: "#3cd3ff"
-  },
-  submitBtnText: {
-    color: "#3c3c3c",
-    fontSize: 18,
-    textAlign: "center",
-    fontFamily: "sans-serif-light"
-  },
-  submitBtn: {
-    padding: 10,
-    backgroundColor: "rgba(52, 52, 52, 0)",
-    position: "absolute",
-    bottom: 0,
-    width: null,
-    flex: 1,
-    marginBottom: 14,
-    alignSelf: "flex-end"
-  },
-  title: {
-    fontSize: 30,
-    color: "#333"
+    borderColor: "hsl(185, 81%, 29%)"
   },
   input: {
     width: 250,

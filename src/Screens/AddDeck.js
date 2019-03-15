@@ -38,7 +38,7 @@ class AddDeck extends React.Component {
             multiline={true}
             maxLength={60}
             placeholder="Tap here to enter deck name"
-            placeholderTextColor="#3c3c3c"
+            placeholderTextColor="hsl(184, 91%, 17%)"
             onChangeText={text => this.setState({ text: text })}
             value={this.state.text}
           />
@@ -63,40 +63,41 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingTop: 20,
     paddingBottom: 10,
-    backgroundColor: "white"
+    backgroundColor: "hsl(210, 36%, 96%)"
   },
   button: {
     height: hp("20%"),
-    backgroundColor: "#efefef",
+    backgroundColor: "hsl(212, 33%, 89%)",
     justifyContent: "center",
-    borderWidth: 0.5,
-    borderColor: "#adadad",
-    borderBottomWidth: 1,
-    elevation: 0.5,
     marginHorizontal: 20,
-    marginTop: 20
+    marginTop: 20,
+    elevation: 1,
+    marginHorizontal: 20,
+    borderRadius: 4,
+    borderLeftWidth: 3,
+    borderLeftColor: "hsl(185, 81%, 29%)",
+    borderTopLeftRadius: 2,
+    borderTopRightRadius: 2
   },
   titleText: {
     fontSize: 20,
-    fontFamily: "sans-serif-light",
-    color: "#3c3c3c",
+    fontFamily: "Roboto",
+    color: "hsl(184, 91%, 17%)",
     textAlign: "center"
   },
   submitBtnText: {
     fontSize: 20,
-    fontFamily: "sans-serif-medium",
-    color: "green",
+    fontFamily: "Roboto",
+    color: "hsl(212, 33%, 89%)",
     textAlign: "center"
   },
   submitBtn: {
-    borderWidth: 2,
+    borderRadius: 4,
     padding: 10,
-    backgroundColor: "#efefef",
-    borderRadius: 6,
+    backgroundColor: "hsl(185, 81%, 29%)",
     overflow: "hidden",
     marginTop: 20,
-    marginHorizontal: 80,
-    borderColor: "green"
+    marginHorizontal: 80
   }
 });
 

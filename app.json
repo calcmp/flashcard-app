@@ -5,13 +5,13 @@
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": ["ios", "android"],
-    "version": "5.0.3",
+    "version": "6.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#3cd3ff"
+      "backgroundColor": "#F0F4F8"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -23,8 +23,12 @@
     },
     "android": {
       "package": "com.callumpenny.flashcard",
-      "versionCode": 9,
-      "permissions": []
+      "versionCode": 11,
+      "permissions": [],
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#044e54"
+      }
     }
   }
 }

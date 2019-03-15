@@ -28,7 +28,7 @@ class DeckScreen extends React.Component {
     const { decks } = this.props;
     console.log(this.props.decks);
     return (
-      <ScrollView>
+      <ScrollView style={{ backgroundColor: "hsl(210, 36%, 96%)" }}>
         <View style={styles.container}>
           {Object.keys(decks).map(deck => {
             const { title, questions } = decks[deck];
@@ -77,31 +77,34 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingTop: 20,
     paddingBottom: 10,
-    backgroundColor: "white"
+    backgroundColor: "hsl(210, 36%, 96%)"
   },
   button: {
     flex: 1,
     height: hp("20%"),
-    backgroundColor: "#efefef",
+    backgroundColor: "hsl(212, 33%, 89%)",
     marginBottom: 10,
     justifyContent: "center",
-    borderWidth: 0.5,
-    borderColor: "#adadad",
-    borderBottomWidth: 1,
-    elevation: 0.5,
+    elevation: 1,
     marginHorizontal: 20,
-    borderRadius: 2
+    borderRadius: 4,
+    borderLeftWidth: 3,
+    borderLeftColor: "hsl(185, 81%, 29%)",
+    borderTopLeftRadius: 2,
+    borderTopRightRadius: 2
   },
   titleText: {
     fontSize: 20,
-    fontFamily: "sans-serif-light",
-    color: "#3c3c3c",
+    fontFamily: "Roboto",
+    color: "hsl(184, 91%, 17%)",
+    fontWeight: "400",
     textAlign: "center"
   },
   cardText: {
-    fontSize: 16,
-    fontFamily: "sans-serif-light",
-    color: "#3c3c3c",
+    fontSize: 20,
+    fontFamily: "Roboto",
+    color: "hsl(210, 36%, 65%)",
+    fontWeight: "400",
     justifyContent: "center",
     textAlign: "center",
     position: "absolute",
@@ -109,7 +112,8 @@ const styles = StyleSheet.create({
     bottom: 6
   },
   deckDetails: {
-    flex: 1
+    flex: 1,
+    paddingTop: 28
   },
   descContainer: {
     flexDirection: "row",

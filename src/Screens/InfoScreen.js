@@ -66,30 +66,31 @@ const styles = StyleSheet.create({
     height: null,
     width: null,
     resizeMode: "cover",
-    borderRadius: 20,
-    backgroundColor: "white",
+    borderRadius: 10,
+    backgroundColor: "hsl(212, 33%, 89%)",
     marginHorizontal: 6,
-    borderWidth: 1.5,
-    borderColor: "#3cd3ff",
-    alignItems: "center"
+    alignItems: "center",
+    borderColor: "hsl(185, 81%, 29%)",
+    borderWidth: 1.5
   },
   deckText: {
-    fontFamily: "sans-serif-light",
-    color: "#3c3c3c",
+    fontFamily: "Roboto",
+    color: "hsl(184, 91%, 17%)",
     textAlign: "center",
     fontSize: 20,
     marginTop: 26,
     marginBottom: -20,
-    marginHorizontal: 30
+    marginHorizontal: 30,
+    fontWeight: "400"
   },
   cardNumText: {
-    fontFamily: "sans-serif-light",
-    color: "#3c3c3c",
+    fontFamily: "Roboto",
+    color: "hsl(210, 36%, 65%)",
     fontSize: 20,
     textAlign: "center"
   },
   cardNumContainer: {
-    backgroundColor: "#efefef",
+    backgroundColor: "hsl(210, 36%, 96%)",
     width: 70,
     height: 70,
     borderRadius: 70,
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
     bottom: 8,
     alignSelf: "center",
     borderWidth: 1.5,
-    borderColor: "#3cd3ff"
+    borderColor: "hsl(185, 81%, 29%)"
   }
 });
 

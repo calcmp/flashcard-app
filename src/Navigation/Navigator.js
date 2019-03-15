@@ -53,7 +53,7 @@ const DeckNavigator = createStackNavigator(
     defaultNavigationOptions: {
       title: "Flashcard Express",
       headerStyle: {
-        backgroundColor: "white"
+        backgroundColor: "hsl(210, 36%, 96%)"
       },
       headerTitle: (
         <Image
@@ -83,7 +83,7 @@ const NewDeckNavigator = createStackNavigator(
     defaultNavigationOptions: {
       title: "Flashcard Express",
       headerStyle: {
-        backgroundColor: "white"
+        backgroundColor: "hsl(210, 36%, 96%)"
       },
       headerTitle: (
         <Image
@@ -113,7 +113,7 @@ const InfoNavigator = createStackNavigator(
     defaultNavigationOptions: {
       title: "Flashcard Express",
       headerStyle: {
-        backgroundColor: "white"
+        backgroundColor: "hsl(210, 36%, 96%)"
       },
       headerTitle: (
         <Image
@@ -123,7 +123,7 @@ const InfoNavigator = createStackNavigator(
       ),
       headerLeft: null,
       headerTitleStyle: {
-        fontFamily: "sans-serif-medium",
+        fontFamily: "Roboto",
         fontSize: 18,
         fontWeight: undefined,
         textAlign: "left",
@@ -174,11 +174,11 @@ const TabNavigator = createBottomTabNavigator(
       tabBarVisible: true
     },
     tabBarOptions: {
-      activeTintColor: "#3cd3ff",
-      inactiveTintColor: "#282828",
+      activeTintColor: "hsl(185, 81%, 29%)",
+      inactiveTintColor: "hsl(210, 22%, 49%)",
       labelStyle: {
         fontSize: 10,
-        fontFamily: "sans-serif-medium",
+        fontFamily: "Roboto",
         marginBottom: 4,
         marginTop: -4
       }

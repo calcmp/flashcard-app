@@ -217,7 +217,8 @@ class DeckView extends React.Component {
                   position: "absolute",
                   alignSelf: "center",
                   top: 160,
-                  zIndex: 1000
+                  zIndex: 1000,
+                  elevation: 1
                 }}
               >
                 <MaterialCommunityIcons
@@ -234,7 +235,8 @@ class DeckView extends React.Component {
                   position: "absolute",
                   alignSelf: "center",
                   top: 160,
-                  zIndex: 1000
+                  zIndex: 1000,
+                  elevation: 1
                 }}
               >
                 <Text style={styles.wrong}> X </Text>
@@ -315,7 +317,7 @@ class DeckView extends React.Component {
       decks[deck].questions.length >= 1
     ) {
       return (
-        <View style={{ flex: 1, backgroundColor: "#efefef" }}>
+        <View style={{ flex: 1 }}>
           <View style={{ height: 10 }} />
           <View style={{ flex: 1 }}>
             <Animated.View
@@ -341,11 +343,11 @@ class DeckView extends React.Component {
                   style={styles.replay}
                   onPress={this.replayQuiz}
                 >
-                  <Text style={styles.deckText}>Replay</Text>
+                  <Text style={styles.replayText}>Replay</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.back} onPress={this.goBack}>
-                  <Text style={styles.deckText}>Back</Text>
+                  <Text style={styles.backText}>Back</Text>
                 </TouchableOpacity>
                 <View style={styles.cardNumContainer} />
               </View>
@@ -364,7 +366,7 @@ class DeckView extends React.Component {
     }
     if (decks[deck].questions.length === 0) {
       return (
-        <View style={{ flex: 1, backgroundColor: "#efefef" }}>
+        <View style={{ flex: 1 }}>
           <View style={{ height: 10 }} />
           <View style={{ flex: 1 }}>
             <Animated.View
@@ -391,10 +393,10 @@ class DeckView extends React.Component {
                   />{" "}
                   icon to add your first card!
                 </Text>
-                <RemoveCard
-                  deckId={deck}
-                  currentQNumId={currentQNum}
-                  onPress={this.props.navigation.navigate("DeckScren", {})}
+                <MaterialCommunityIcons
+                  style={styles.removeBtn}
+                  name="minus-box"
+                  size={30}
                 />
                 <MaterialCommunityIcons
                   style={styles.addBtn}
@@ -419,7 +421,7 @@ class DeckView extends React.Component {
     }
 
     return (
-      <View style={{ flex: 1, backgroundColor: "#efefef" }}>
+      <View style={{ flex: 1 }}>
         <View style={{ height: 10 }} />
         <View style={{ flex: 1 }}>
           {this.renderCard()}
@@ -442,22 +444,51 @@ const styles = StyleSheet.create({
     height: null,
     width: null,
     resizeMode: "cover",
-    borderRadius: 20,
-    backgroundColor: "white",
+    borderRadius: 10,
+    backgroundColor: "hsl(212, 33%, 89%)",
     marginHorizontal: 6,
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 1.5,
-    borderColor: "#3cd3ff"
+    borderColor: "hsl(185, 81%, 29%)"
+  },
+  deckText: {
+    fontFamily: "Roboto",
+    color: "hsl(184, 91%, 17%)",
+    textAlign: "center",
+    fontSize: 20,
+    marginTop: 26,
+    marginBottom: -20,
+    marginHorizontal: 30
+  },
+  deckTextQuestion: {
+    fontFamily: "Roboto",
+    color: "hsl(184, 91%, 17%)",
+    textAlign: "center",
+    justifyContent: "center",
+    marginTop: -100,
+    fontSize: 28,
+    fontWeight: "400",
+    marginHorizontal: 30
+  },
+  deckTextAnswer: {
+    fontFamily: "Roboto",
+    color: "hsl(184, 91%, 17%)",
+    textAlign: "center",
+    paddingTop: 50,
+    marginTop: -100,
+    marginHorizontal: 30,
+    fontSize: 28,
+    fontWeight: "400"
   },
   cardNumText: {
-    fontFamily: "sans-serif-light",
-    color: "#3c3c3c",
+    fontFamily: "Roboto",
+    color: "hsl(210, 36%, 65%)",
     fontSize: 20,
     textAlign: "center"
   },
   cardNumContainer: {
-    backgroundColor: "#efefef",
+    backgroundColor: "hsl(210, 36%, 96%)",
     width: 70,
     height: 70,
     borderRadius: 70,
@@ -466,39 +497,13 @@ const styles = StyleSheet.create({
     bottom: 8,
     alignSelf: "center",
     borderWidth: 1.5,
-    borderColor: "#3cd3ff"
-  },
-  deckText: {
-    fontFamily: "sans-serif-light",
-    color: "#3c3c3c",
-    textAlign: "center",
-    fontSize: 20,
-    marginTop: 30,
-    marginHorizontal: 30
-  },
-  deckTextQuestion: {
-    fontFamily: "sans-serif-light",
-    color: "#3c3c3c",
-    textAlign: "center",
-    justifyContent: "center",
-    marginTop: -100,
-    fontSize: 30,
-    marginHorizontal: 30
-  },
-  deckTextAnswer: {
-    fontFamily: "sans-serif-light",
-    color: "#3c3c3c",
-    textAlign: "center",
-    paddingTop: 50,
-    marginTop: -100,
-    marginHorizontal: 30,
-    fontSize: 30
+    borderColor: "hsl(185, 81%, 29%)"
   },
   submitBtnText: {
-    color: "#3c3c3c",
+    fontFamily: "Roboto",
+    color: "hsl(210, 22%, 49%)",
     fontSize: 18,
-    textAlign: "center",
-    fontFamily: "sans-serif-light"
+    textAlign: "center"
   },
   submitBtn: {
     padding: 10,
@@ -511,27 +516,53 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end"
   },
   replay: {
-    padding: 10,
-    backgroundColor: "rgba(52, 52, 52, 0)",
+    padding: 2,
+    backgroundColor: "hsl(185, 81%, 29%)",
     position: "absolute",
     bottom: 0,
     width: null,
     flex: 1,
     marginBottom: 14,
-    alignSelf: "flex-end"
-  },
-  back: {
-    padding: 10,
-    backgroundColor: "rgba(52, 52, 52, 0)",
-    position: "absolute",
-    bottom: 0,
-    width: null,
-    flex: 1,
-    marginBottom: 14,
+    borderRadius: 4,
+    marginLeft: 242,
+    paddingTop: 8,
+    paddingBottom: 8,
     alignSelf: "flex-start"
   },
+  replayText: {
+    fontFamily: "Roboto",
+    color: "hsl(212, 33%, 89%)",
+    textAlign: "center",
+    fontSize: 20,
+    marginBottom: 0,
+    marginHorizontal: 30
+  },
+  back: {
+    padding: 6,
+    paddingTop: 8,
+    paddingBottom: 8,
+    backgroundColor: "hsl(212, 33%, 89%)",
+    position: "absolute",
+    bottom: 0,
+    width: null,
+    flex: 1,
+    marginBottom: 14,
+    alignSelf: "flex-start",
+    marginLeft: 16,
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: "hsl(209, 23%, 60%)"
+  },
+  backText: {
+    fontFamily: "Roboto",
+    color: "hsl(211, 39%, 23%)",
+    textAlign: "center",
+    fontSize: 20,
+    marginBottom: 0,
+    marginHorizontal: 30
+  },
   addBtn: {
-    color: "#ff0000",
+    color: "hsl(330, 72%, 65%)",
     justifyContent: "center",
     position: "absolute",
     bottom: 0,
@@ -541,38 +572,45 @@ const styles = StyleSheet.create({
   },
   correct: {
     borderWidth: 1,
-    borderColor: "green",
-    color: "green",
+    borderColor: "hsl(42, 78%, 60%)",
+    color: "hsl(42, 78%, 60%)",
     padding: 10,
     borderRadius: 6
   },
   wrong: {
     borderWidth: 1,
-    borderColor: "red",
-    color: "red",
+    borderColor: "hsl(360, 67%, 44%)",
+    color: "hsl(360, 67%, 44%)",
     fontSize: 70,
     fontWeight: "800",
     padding: 20,
     borderRadius: 6
   },
   correctText: {
-    borderWidth: 1,
-    borderColor: "green",
-    color: "green",
+    backgroundColor: "hsl(185, 81%, 19%)",
+    color: "hsl(212, 33%, 89%)",
     fontSize: 34,
     padding: 10,
     borderRadius: 6,
-    fontFamily: "sans-serif-light",
+    fontFamily: "Roboto",
     marginTop: -60
   },
   incorrectText: {
-    borderWidth: 1,
-    borderColor: "red",
-    color: "red",
+    backgroundColor: "hsl(185, 81%, 29%)",
+    color: "hsl(212, 33%, 89%)",
     fontSize: 30,
     padding: 10,
     borderRadius: 6,
-    fontFamily: "sans-serif-light"
+    fontFamily: "Roboto"
+  },
+  removeBtn: {
+    color: "hsl(330, 87%, 85%)",
+    justifyContent: "center",
+    position: "absolute",
+    bottom: 0,
+    alignSelf: "flex-start",
+    marginLeft: 20,
+    marginBottom: 20
   }
 });
 

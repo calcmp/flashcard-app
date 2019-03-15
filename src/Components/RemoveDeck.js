@@ -31,7 +31,7 @@ class RemoveDeck extends React.Component {
       <MaterialCommunityIcons
         style={styles.removeBtn}
         name="minus-box"
-        size={30}
+        size={26}
         onPress={() => this.goConfirmView(deckId)}
       />
     );
@@ -40,7 +40,8 @@ class RemoveDeck extends React.Component {
 
 const styles = StyleSheet.create({
   removeBtn: {
-    color: "#ff0000"
+    color: "hsl(330, 72%, 65%)",
+    marginTop: -4
   }
 });
 
