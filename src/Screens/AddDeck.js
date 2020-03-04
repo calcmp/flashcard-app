@@ -8,7 +8,6 @@ import {
   heightPercentageToDP as hp
 } from "react-native-responsive-screen";
 import SubmitButton from "../Components/SubmitButton.js";
-import { AdMobBanner } from "expo";
 
 class AddDeck extends React.Component {
   state = {
@@ -44,14 +43,6 @@ class AddDeck extends React.Component {
           />
         </View>
         <SubmitButton styles={styles} onPress={this.submitName} />
-
-        <AdMobBanner
-          style={{ position: "absolute", bottom: 0 }}
-          bannerSize="fullBanner"
-          adUnitID="ca-app-pub-1548251077535465/6579386800" // Test ID, Replace with your-admob-unit-id
-          testDeviceID="EMULATOR"
-          onDidFailToReceiveAdWithError={this.bannerError}
-        />
       </View>
     );
   }

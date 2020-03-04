@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, View, Animated, Dimensions, Text } from "react-native";
-import { AdMobBanner } from "expo";
 
 const SCREEN_HEIGHT = Dimensions.get("window").height;
 const SCREEN_WIDTH = Dimensions.get("window").width;
@@ -45,14 +44,6 @@ class InfoScreen extends React.Component {
               </View>
             </View>
           </Animated.View>
-
-          <AdMobBanner
-            style={{ position: "absolute", bottom: 0 }}
-            bannerSize="fullBanner"
-            adUnitID="ca-app-pub-1548251077535465/6579386800" // Test ID, Replace with your-admob-unit-id
-            testDeviceID="EMULATOR"
-            onDidFailToReceiveAdWithError={this.bannerError}
-          />
           <View style={{ height: 10 }} />
         </View>
       </View>

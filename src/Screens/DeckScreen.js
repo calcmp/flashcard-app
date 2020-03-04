@@ -9,7 +9,6 @@ import Deck from "../Components/Deck.js";
 import DeckDetails from "../Components/DeckDetails.js";
 import { getDecks } from "../Utils/Api.js";
 import { receiveDecks } from "../Actions/index.js";
-import { AdMobBanner } from "expo";
 
 class DeckScreen extends React.Component {
   componentDidMount() {
@@ -26,7 +25,6 @@ class DeckScreen extends React.Component {
 
   render() {
     const { decks } = this.props;
-    console.log(this.props.decks);
     return (
       <ScrollView style={{ backgroundColor: "hsl(210, 36%, 96%)" }}>
         <View style={styles.container}>
@@ -50,12 +48,6 @@ class DeckScreen extends React.Component {
             );
           })}
         </View>
-        <AdMobBanner
-          bannerSize="fullBanner"
-          adUnitID="ca-app-pub-1548251077535465/6579386800" // Test ID, Replace with your-admob-unit-id
-          testDeviceID="EMULATOR"
-          onDidFailToReceiveAdWithError={this.bannerError}
-        />
       </ScrollView>
     );
   }
@@ -123,7 +115,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DeckScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(DeckScreen);

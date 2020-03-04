@@ -13,7 +13,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { connect } from "react-redux";
 import RemoveCard from "../Components/RemoveCard.js";
 import InfoButton from "../Components/InfoButton.js";
-import { AdMobBanner } from "expo";
 
 const SCREEN_HEIGHT = Dimensions.get("window").height;
 const SCREEN_WIDTH = Dimensions.get("window").width;
@@ -355,12 +354,6 @@ class DeckView extends React.Component {
 
             <View style={{ height: 10 }} />
           </View>
-          <AdMobBanner
-            bannerSize="fullBanner"
-            adUnitID="ca-app-pub-1548251077535465/6579386800" // Test ID, Replace with your-admob-unit-id
-            testDeviceID="EMULATOR"
-            onDidFailToReceiveAdWithError={this.bannerError}
-          />
         </View>
       );
     }
@@ -413,7 +406,6 @@ class DeckView extends React.Component {
                 </View>
               </View>
             </Animated.View>
-
             <View style={{ height: 10 }} />
           </View>
         </View>
