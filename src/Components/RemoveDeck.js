@@ -7,7 +7,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 class RemoveDeck extends React.Component {
   submitRemove = deck => {
-    console.log("deck: ", deck);
     removeDeckTitle(deck);
     this.props.dispatch(removeDeck(deck));
   };

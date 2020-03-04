@@ -7,7 +7,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 class ShuffleDeck extends React.Component {
   submitShuffle = deck => {
-    console.log("deck: ", deck);
     shuffleDeckTitle(deck);
     this.props.dispatch(shuffleDeck(deck));
   };
